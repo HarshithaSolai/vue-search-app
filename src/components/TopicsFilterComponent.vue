@@ -1,10 +1,10 @@
 <template>
   <div class="inline-flex flex-wrap">
-    <h3 class="mr-5 text-xl font-bold text-abnamro-green">Filter By Topics:</h3>
+    <h3 class="mr-5 text-xl font-bold text-abn-green">Filter By Topics:</h3>
     <select
       :value="selectedTopic"
       @input="updateSelectedTopic"
-      class="border focus:outline-none border-abnamro-yellow w-[180px] h-[30px]"
+      class="border focus:outline-none border-abn-yellow w-[180px] h-[30px]"
     >
       <option value="people">People</option>
       <option value="organizations">Organizations</option>

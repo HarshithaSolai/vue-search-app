@@ -6,6 +6,6 @@
 
 <script>
 export default {
-  name: 'NavbarComponent'
+  name: 'HeaderComponent'
 }
 </script>

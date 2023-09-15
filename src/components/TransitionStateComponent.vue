@@ -1,6 +1,6 @@
 <template>
-  <div className="flex items-center justify-center h-screen">
-    <h2 className="text-2xl" :data-testid="type">
+  <div className="flex items-center justify-center h-[60vh]">
+    <h2 className="text-2xl text-gray-500" :data-testid="type">
       {{ message }}
     </h2>
   </div>
@@ -22,14 +22,17 @@ export default {
   },
   created() {
     switch (this.type) {
-      case 'api-error':
+      case 'error':
         this.message = 'Something went wrong...'
         break
-      case 'api-loading':
+      case 'loading':
         this.message = 'Loading...'
         break
       case 'no-data':
         this.message = 'No data found...'
+        break
+      case 'initial-state':
+        this.message = 'Please search for a topic to view the results....'
         break
       default:
         this.message = 'Unforseen error...'
