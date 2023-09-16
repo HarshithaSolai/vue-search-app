@@ -8,12 +8,15 @@
         :alt="result.street"
       />
     </div>
-    <div class="flex flex-col items-center sm:justify-between">
-      <p data-testid="street">Street: {{ result.street }}</p>
-      <p data-testid="house_number">House number: {{ result.house_number }}</p>
-      <p data-testid="city">City: {{ result.city }}</p>
-      <p data-testid="postal_code">Postal Code: {{ result.postal_code }}</p>
-      <p data-testid="country">Country: {{ result.country }}</p>
+    <div class="flex flex-col m:items-start sm:justify-between">
+      <h3 class="font-bold text-xl text-abn-green hover:underline">
+        <router-link :to="{ name: 'info' }">{{ result.city }}, {{ result.country }}</router-link>
+      </h3>
+      <p data-testid="street"><span class="font-bold">Street:</span> {{ result.street }}</p>
+      <p data-testid="house_number"><span class="font-bold">House number: </span>{{ result.house_number }}</p>
+      <p data-testid="city"><span class="font-bold">City:</span> {{ result.city }}</p>
+      <p data-testid="postal_code"><span class="font-bold">Postal Code:</span> {{ result.postal_code }}</p>
+      <p data-testid="country"><span class="font-bold">Country:</span> {{ result.country }}</p>
     </div>
   </div>
 </template>

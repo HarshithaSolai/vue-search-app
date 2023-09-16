@@ -18,7 +18,7 @@ describe('AddressCard', () => {
     });
 
     // Verify that the component renders with the expected data
-    expect(wrapper.find('[data-testid="street"]').text()).toContain('Street: 123 Main St');
+  expect(wrapper.find('[data-testid="street"]').text()).toContain('Street: 123 Main St');
   expect(wrapper.find('[data-testid="house_number"]').text()).toContain('House number: 42');
   expect(wrapper.find('[data-testid="city"]').text()).toContain('City: Example City');
   expect(wrapper.find('[data-testid="postal_code"]').text()).toContain('Postal Code: 12345');

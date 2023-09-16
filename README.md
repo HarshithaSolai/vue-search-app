@@ -26,6 +26,9 @@
 
 Additional Features that I implemented : 
 - Filter option to filter the topics to be searched
+- Filter option 'All' to search in all the topics and displays the mix of search result topics
+- Handling various scenarios like enabling the search button only when user types more than 3 characters
+- Showing Transition State like loading, error and no data scenarios
 
 ### Non-Functional Requirements
 - Responsive & Mobile friendly 
@@ -83,8 +86,6 @@ Based on the requirements, I am planning to use Client-Side Rendering Architectu
   ```
 ## API Endpoints 
 Used mockaroo to generate mock people, organizations and addresses (JSON format) data and stored in mock-data.json
-
-
 
 ## Live Demo
 Please check https://vue-search-app.netlify.app/ for live demo.

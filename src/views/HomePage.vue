@@ -42,7 +42,14 @@ export default {
   },
   methods: {
     handleTopicSelected(topic) {
+      if (topic === 'all') {
+      // If "All" is selected, set selectedTopic to an empty string
+      this.selectedTopic = 'all';
+    } else {
+      // Otherwise, set the selectedTopic to the chosen topic
       this.selectedTopic = topic;
+    }
+
       this.searchResults = [];
       this.loading = false;
       this.error = null;

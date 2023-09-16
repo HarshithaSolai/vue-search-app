@@ -6,6 +6,7 @@
       @input="updateSelectedTopic"
       class="border focus:outline-none border-abn-yellow w-[180px] h-[30px]"
     >
+      <option value="all">All</option> 
       <option value="people">People</option>
       <option value="organizations">Organizations</option>
       <option value="addresses">Addresses</option>

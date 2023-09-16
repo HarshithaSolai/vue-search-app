@@ -8,9 +8,9 @@
         :alt="result.name"
       />
     </div>
-    <div class="flex flex-col items-center sm:items-start sm:justify-center">
-      <h3 class="font-bold text-xl text-abn-green">
-        <a :href="result.link">{{ result.name }}</a>
+    <div class="flex flex-col sm:items-start sm:justify-between">
+      <h3 class="font-bold text-xl text-abn-green hover:underline">
+        <router-link :to="{ name: 'info' }">{{ result.name }}</router-link>
       </h3>
       <p><span class="font-bold">Organization Name: </span>{{ result.name }}</p>
       <p><span class="font-bold">Industry:</span> {{ result.industry }}</p>

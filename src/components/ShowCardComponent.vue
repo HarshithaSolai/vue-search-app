@@ -7,7 +7,7 @@
     >
       <!-- Dynamically render the appropriate card component -->
       <component
-        :is="getCardComponentName()"
+        :is="getCardComponentName(result.type)"
         :result="result"
       ></component>
     </div>
@@ -31,13 +31,26 @@ export default {
     AddressCard,
   },
   methods: {
-    getCardComponentName() {
-      if (this.topic === "people") {
-        return "PeopleCard";
-      } else if (this.topic === "organizations") {
-        return "OrganizationCard";
-      } else if (this.topic === "addresses") {
-        return "AddressCard";
+    getCardComponentName(resultType) {
+     // If the topic is "all," return all card components mixed
+      if (this.topic === "all") {
+        // Determine the component based on the result's topic
+        if (resultType === "people") {
+          return "PeopleCard";
+        } else if (resultType === "organizations") {
+          return "OrganizationCard";
+        } else if (resultType === "addresses") {
+          return "AddressCard";
+        }
+      } else {
+        // Return the appropriate component based on the topic prop
+        if (this.topic === "people") {
+          return "PeopleCard";
+        } else if (this.topic === "organizations") {
+          return "OrganizationCard";
+        } else if (this.topic === "addresses") {
+          return "AddressCard";
+        }
       }
     },
   },
