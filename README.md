@@ -21,7 +21,7 @@
 ### Functional Requirments
 - Search for a topic (people, organisations, addresses)
 - Display search results in vertical tiles (cards)
-- Each card must contain its corresponding fields based on the topic
+- Each result card must contain its corresponding fields based on the topic searched
 - Create mock API response (JSON) for backend data
 
 Additional Features that I implemented : 
@@ -44,7 +44,7 @@ Additional Features that I implemented :
 - **UI Framework** : Vue (Because that is what I will be using in ABN AMRO and in technical point of view it's easy to develop, it's component-based architecture so we can create modular and reusable code, its virtual DOM minimizes unnecessary DOM manipulations)
 - **Routing** : Vue Router
 - **CSS Framework** : Tailwind CSS (Tailwind automatically removes all unused CSS when building for production, responsive design with breakpoints, don't have to spend time on writing long css in css files, reusable classes)
-- **Data/State Management** :  
+- **Data/State Management** :
 - **Testing Framework** : Jest
 - **Bundling** : Vite
 - **Hosting** : Netlify (I thought it will be easy for reviewers to see live demo of the app without having to run scripts)
@@ -55,7 +55,6 @@ Additional Features that I implemented :
 Based on the requirements, I am planning to use Client-Side Rendering Architecture. I am just using Vue without any framework like Nuxt as it is not required for this assignment.
 
 ### Programming patterns
-- I staretd with Options API method of creating components first and then made it reusable using Composition API (it was easy to migrate since it ws very similar to hooks in react)
 - Clean code (Created components based on single responsibility principle)
 - Dymanic component rendering (using dynamic binding :is directive)
 - Conditional rendering using (v-if, v-else-if, and v-else directives)
@@ -63,7 +62,7 @@ Based on the requirements, I am planning to use Client-Side Rendering Architectu
 - Custom Events and Emitting
 - Data and Reactive Properties
 - Lifecycle Hooks
-
+- I staretd with Options API method of creating components first and then made it reusable using Composition API (it was easy to migrate since it ws very similar to hooks in react)
 
 ## Design
 ### UX

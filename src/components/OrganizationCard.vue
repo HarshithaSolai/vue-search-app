@@ -12,23 +12,23 @@
       <h3 class="font-bold text-xl text-abn-green hover:underline">
         <router-link :to="{ name: 'info' }">{{ result.name }}</router-link>
       </h3>
-      <p><span class="font-bold">Organization Name: </span>{{ result.name }}</p>
-      <p><span class="font-bold">Industry:</span> {{ result.industry }}</p>
+      <p data-testid="name"><span class="font-bold">Organization Name: </span>{{ result.name }}</p>
+      <p data-testid="industry"><span class="font-bold">Industry:</span> {{ result.industry }}</p>
     </div>
   </div>
 </template>
 
 <script>
-import organizationImage from '../assets/images/organization.png';
+import organizationImage from '../assets/images/organization.png'
 
 export default {
   props: {
-    result: Object,
+    result: Object
   },
   data() {
     return {
-      organizationImage: organizationImage,
-    };
-  },
-};
+      organizationImage: organizationImage
+    }
+  }
+}
 </script>

@@ -10,6 +10,7 @@
     <button
       class="bg-abn-green text-white rounded-md h-[30px] w-[50px] sm:w-[80px] disabled:opacity-50 disabled:pointer-events-none"
       @click="search"
+      data-testid="search-btn"
       :disabled="searchQuery.length < 3 || loading"
     >
       Search
@@ -20,7 +21,7 @@
 <script>
 export default {
   props: {
-    loading: Boolean // Receive loading prop from parent
+    loading: Boolean
   },
   data() {
     return {
@@ -29,7 +30,7 @@ export default {
   },
   methods: {
     search() {
-      this.$emit('search', this.searchQuery);
+      this.$emit('search', this.searchQuery)
     }
   }
 }

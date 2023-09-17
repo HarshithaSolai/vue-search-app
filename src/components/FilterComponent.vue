@@ -16,11 +16,10 @@ export default {
   props: {
     label: String,
     options: Array,
-    selectedOption: String,
+    selectedOption: String
   },
   methods: {
     updateSelectedOption(event) {
-      // Emit an event to update the selected option
       this.$emit('optionSelected', event.target.value)
     }
   }

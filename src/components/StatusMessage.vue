@@ -29,13 +29,13 @@ export default {
         this.message = 'Loading...'
         break
       case 'no-data':
-        this.message = 'No data found...'
+        this.message = 'No matching data found...'
         break
       case 'initial-state':
         this.message = 'Please search for a topic to view the results....'
         break
       default:
-        this.message = 'Unforseen error...'
+        this.message = 'Unforeseen error...'
     }
   }
 }
