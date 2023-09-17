@@ -8,7 +8,7 @@
 
 <script>
 export default {
-  name: 'TransitionStateComponent',
+  name: 'StatusMessage',
   props: {
     type: {
       type: String,

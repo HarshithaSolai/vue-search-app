@@ -55,6 +55,7 @@ Additional Features that I implemented :
 Based on the requirements, I am planning to use Client-Side Rendering Architecture. I am just using Vue without any framework like Nuxt as it is not required for this assignment.
 
 ### Programming patterns
+- I staretd with Options API method of creating components first and then made it reusable using Composition API (it was easy to migrate since it ws very similar to hooks in react)
 - Clean code (Created components based on single responsibility principle)
 - Dymanic component rendering (using dynamic binding :is directive)
 - Conditional rendering using (v-if, v-else-if, and v-else directives)
@@ -62,7 +63,7 @@ Based on the requirements, I am planning to use Client-Side Rendering Architectu
 - Custom Events and Emitting
 - Data and Reactive Properties
 - Lifecycle Hooks
-- Choosing the right state management technique. (props drilling when props need to be passed to child components, lifting up state to parent ( by emitting events) when  child needs to pass props to parent)
+
 
 ## Design
 ### UX

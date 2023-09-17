@@ -1,34 +1,37 @@
 <template>
   <div class="flex flex-col justify-center items-center gap-4 mb-6 lg:flex-row">
     <SearchComponent @search="handleSearch" :loading="loading"/>
-    <TopicsFilterComponent :selectedTopic="selectedTopic" @topicSelected="handleTopicSelected" />
+    <FilterComponent 
+      :label="'Filter By Topics'" 
+      :options="topicOptions" 
+      :selectedOption="selectedTopic"
+      @optionSelected="handleTopicSelected" />
   </div>
   <div v-if="searchResults.length === 0 && !loading && !error">
-    <TransitionStateComponent type="initial-state" />
+    <StatusMessage type="initial-state" />
   </div>
-
   <div v-else-if="searchResults.length === 0 && error">
-    <TransitionStateComponent type="no-data" />
+    <StatusMessage type="no-data" />
   </div>
   <div v-else-if="loading">
-    <TransitionStateComponent type="loading" />
+    <StatusMessage type="loading" />
   </div>
   <div v-else-if="error">
-    <TransitionStateComponent type="error" />
+    <StatusMessage type="error" />
   </div>
   <div v-else>
-    <ShowCardComponent :results="searchResults" :topic="selectedTopic" />
+    <CardsList :results="searchResults" :topic="selectedTopic" />
 
   </div>
 
 </template>
 
 <script>
-import ShowCardComponent from '../components/ShowCardComponent.vue'
+import CardsList from '../components/CardsList.vue'
 import SearchComponent from '../components/SearchComponent.vue'
-import TopicsFilterComponent from '../components/TopicsFilterComponent.vue'
-import { fetchData } from '../api/services/mockDataService'
-import TransitionStateComponent from "../components/TransitionStateComponent.vue";
+import FilterComponent from '../components/FilterComponent.vue'
+import { fetchData, fetchTopics } from '../api/services/mockDataService'
+import StatusMessage from "../components/StatusMessage.vue";
 
 export default {
   name: 'HomePage',
@@ -37,10 +40,28 @@ export default {
       loading: false,
       error: null,
       searchResults: [],
-      selectedTopic: 'people'
+      selectedTopic: 'people',
+      topicOptions: [] // Initialize topicOptions as an empty array
     }
   },
+  created() {
+    // Fetch topic options when the component is created
+    this.fetchTopicOptions();
+  },
   methods: {
+    // Add a method to fetch topic options
+    async fetchTopicOptions() {
+      try {
+        const responseData = await fetchTopics(); 
+        this.topicOptions = ['all' , ...responseData];
+
+        // Fetch topic options
+        console.log(this.topicOptions)
+      } catch (error) {
+        console.error('Error fetching topic options:', error);
+        // Handle the error as needed
+      }
+    },
     handleTopicSelected(topic) {
       if (topic === 'all') {
       // If "All" is selected, set selectedTopic to an empty string
@@ -59,8 +80,9 @@ export default {
       fetchData(query, this.selectedTopic)
         .then((results) => {
           this.searchResults = results;
-          this.error = null;
           this.loading = false;
+          this.error = (results.length === 0) ? new Error('No matching data found') : null;
+
         })
         .catch((error) => {
           console.error('Error:', error);
@@ -71,9 +93,9 @@ export default {
   },
   components: {
     SearchComponent,
-    ShowCardComponent,
-    TopicsFilterComponent,
-    TransitionStateComponent
+    CardsList,
+    FilterComponent,
+    StatusMessage
   }
 }
 </script>
