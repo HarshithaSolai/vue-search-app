@@ -5,11 +5,21 @@ function delay(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms))
 }
 
-// Simulated function to fetch data based on query and topic
+export async function fetchTopics() {
+  try {
+    const topics = Object.keys(mockData)
+    await delay(1000)
+    return topics
+  } catch (error) {
+    console.error('Error fetching topic options:', error)
+    throw error
+  }
+}
+
 export function fetchData(query, topic) {
   // Simulate an API call and return the data
   return new Promise((resolve, reject) => {
-    delay(1000) // Simulate network latency (remove in production)
+    delay(1000) // Simulate network latency
       .then(() => {
         const results = []
         const topicsToSearch = topic === 'all' ? ['people', 'organizations', 'addresses'] : [topic]
@@ -26,7 +36,9 @@ export function fetchData(query, topic) {
             } else if (key === 'organizations') {
               return (
                 item.name.toLowerCase().includes(query.toLowerCase()) ||
-                item.industry.toLowerCase().includes(query.toLowerCase())
+                item.industry.toLowerCase().includes(query.toLowerCase()) ||
+                item.website.toLowerCase().includes(query.toLowerCase()) ||
+                item.company_size === query
               )
             } else if (key === 'addresses') {
               return (
@@ -34,7 +46,7 @@ export function fetchData(query, topic) {
                 item.house_number.toLowerCase().includes(query.toLowerCase()) ||
                 item.city.toLowerCase().includes(query.toLowerCase()) ||
                 item.country.toLowerCase().includes(query.toLowerCase()) ||
-                item.postal_code.toLowerCase().includes(query.toLowerCase())
+                item.postal_code?.toLowerCase().includes(query.toLowerCase())
               )
             } else {
               return false
@@ -50,20 +62,4 @@ export function fetchData(query, topic) {
         reject(error)
       })
   })
-}
-
-// Simulated function to fetch topic options from the mock JSON data
-export async function fetchTopics() {
-  try {
-    // Extract the keys (topics) from the mock JSON data
-    const topics = Object.keys(mockData)
-
-    // Simulate an API call to fetch topic options
-    // You can replace this with an actual API call in a real application
-    await delay(1000) // Simulate network latency (remove in production)
-    return topics
-  } catch (error) {
-    console.error('Error fetching topic options:', error)
-    throw error
-  }
 }

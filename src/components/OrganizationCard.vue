@@ -1,34 +1,32 @@
 <template>
-  <div class="flex flex-col gap-4 sm:flex-row">
-    <div class="flex flex-row justify-center items-center">
-      <img
-        loading="lazy"
-        class="object-cover h-full w-[160px]"
-        :src="organizationImage"
-        :alt="result.name"
-      />
-    </div>
-    <div class="flex flex-col sm:items-start sm:justify-between">
-      <h3 class="font-bold text-xl text-abn-green hover:underline">
-        <router-link :to="{ name: 'info' }">{{ result.name }}</router-link>
-      </h3>
-      <p data-testid="name"><span class="font-bold">Organization Name: </span>{{ result.name }}</p>
-      <p data-testid="industry"><span class="font-bold">Industry:</span> {{ result.industry }}</p>
-    </div>
-  </div>
+  <BaseCard
+    :image-src="organizationImage"
+    :alt-text="result.name"
+    :title="result.name"
+    :link-to="{ name: 'info' }"
+  >
+    <p data-testid="name"><span class="font-bold">Organization Name: </span>{{ result.name }}</p>
+    <p data-testid="industry"><span class="font-bold">Industry:</span> {{ result.industry }}</p>
+    <p data-testid="website"><span class="font-bold">Website:</span> {{ result.website }}</p>
+    <p data-testid="company_size"><span class="font-bold">Number of Employees:</span> {{ result.company_size }}</p>
+  </BaseCard>
 </template>
 
 <script>
-import organizationImage from '../assets/images/organization.png'
+import BaseCard from './BaseCard.vue';
+import organizationImage from '../assets/images/organization.png';
 
 export default {
   props: {
-    result: Object
+    result: Object,
+  },
+  components: {
+    BaseCard,
   },
   data() {
     return {
-      organizationImage: organizationImage
-    }
-  }
-}
+      organizationImage: organizationImage,
+    };
+  },
+};
 </script>

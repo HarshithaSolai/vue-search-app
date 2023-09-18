@@ -5,8 +5,11 @@ import mockImage from '../../assets/images/organization.png' // Update the path 
 describe('OrganizationCard', () => {
   it('renders the component with prop data', () => {
     const sampleOrganization = {
-      name: 'Example Organization',
-      industry: 'Technology'
+      type: 'organizations',
+      name: 'Wisoky, Weimann and Altenwerth',
+      industry: 'Travel',
+      website: 'wisoky.com',
+      company_size: 53458
     }
 
     const wrapper = mount(OrganizationCard, {
@@ -15,20 +18,22 @@ describe('OrganizationCard', () => {
       }
     })
 
-    // Verify that the component exists
     expect(wrapper.exists()).toBe(true)
 
-    // Check if the organization name and industry are displayed
-    expect(wrapper.find('[data-testid="name"]').text()).toContain(
-      'Organization Name: Example Organization'
-    )
-    expect(wrapper.find('[data-testid="industry"]').text()).toContain('Industry: Technology')
+    expect(wrapper.find('[data-testid="name"]').text()).toContain('Organization Name: Wisoky, Weimann and Altenwerth')
+    expect(wrapper.find('[data-testid="industry"]').text()).toContain('Industry: Travel')
+    expect(wrapper.find('[data-testid="website"]').text()).toContain('Website: wisoky.com')
+    expect(wrapper.find('[data-testid="company_size"]').text()).toContain('Number of Employees: 53458')
+ 
   })
 
   it('displays the organization image', () => {
-    const organization = {
-      name: 'Example Organization',
-      industry: 'Technology'
+    const organization =  {
+      type: 'organizations',
+      name: 'Wisoky, Weimann and Altenwerth',
+      industry: 'Travel',
+      website: 'wisoky.com',
+      company_size: 53458
     }
 
     const wrapper = mount(OrganizationCard, {
@@ -42,12 +47,10 @@ describe('OrganizationCard', () => {
       }
     })
 
-    // Verify that the image element exists
     const imgElement = wrapper.find('img')
     expect(imgElement.exists()).toBe(true)
 
-    // Check if the src and alt attributes match the organization data
     expect(imgElement.attributes('src')).toEqual(expect.stringContaining(mockImage))
-    expect(imgElement.attributes('alt')).toBe('Example Organization')
+    expect(imgElement.attributes('alt')).toBe('Wisoky, Weimann and Altenwerth')
   })
 })

@@ -30,7 +30,7 @@ export default {
   },
   methods: {
     getCardComponentName(resultType) {
-      const componentName = componentMap[resultType]
+      const componentName = componentMap[resultType];
 
       if (this.topic !== 'all' && componentMap[this.topic]) {
         return componentMap[this.topic]

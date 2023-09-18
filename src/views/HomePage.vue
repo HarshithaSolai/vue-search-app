@@ -7,7 +7,6 @@
       @optionSelected="handleTopicSelected"
     />
     <SearchComponent @search="handleSearch" :loading="loading" />
-
   </div>
   <div v-if="IsInitialState">
     <StatusMessage type="initial-state" />
@@ -66,24 +65,25 @@ export default {
       }
     },
     handleTopicSelected(topic) {
-      this.selectedTopic = topic
-      this.searchResults = []
-      this.loading = false
-      this.error = null
+      this.selectedTopic = topic;
+      this.searchResults = [];
+      this.loading = false;
+      this.error = null;
     },
     handleSearch(query) {
       this.error = null
       this.loading = true
       fetchData(query, this.selectedTopic)
         .then((results) => {
-          this.searchResults = results
-          this.loading = false
-          this.error = results.length === 0 ? new Error('No matching data found') : null
+          this.searchResults = results;
+          this.error = results.length === 0 ? new Error('No matching data found') : null;
         })
         .catch((error) => {
-          this.apiError = error
-          this.loading = false
+          this.apiError = error;
         })
+        .finally(() => {
+          this.loading = false;
+        });
     }
   },
   components: {
