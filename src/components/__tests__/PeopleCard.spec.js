@@ -20,7 +20,7 @@ describe('PeopleCard', () => {
 
     expect(wrapper.exists()).toBe(true)
 
-    expect(wrapper.find('[data-testid="people_title"]').text()).toContain('John Doe')
+    expect(wrapper.find('[data-testid="title"]').text()).toContain('John Doe')
     expect(wrapper.find('[data-testid="first_name"]').text()).toContain('First Name: John')
     expect(wrapper.find('[data-testid="last_name"]').text()).toContain('Last Name: Doe')
     expect(wrapper.find('[data-testid="gender"]').text()).toContain('Gender: Male')

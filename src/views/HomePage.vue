@@ -33,15 +33,18 @@ import FilterComponent from '../components/FilterComponent.vue';
 import { fetchData, fetchTopics } from '../api/services/mockDataService';
 import StatusMessage from '../components/StatusMessage.vue';
 
+import { useLoading } from '../composables/useLoading';
+import { useError } from '../composables/useError'; 
+
 export default {
   name: 'HomePage',
   setup() {
-    const loading = ref(false);
-    const error = ref(null);
-    const apiError = ref(null);
     const searchResults = ref([]);
     const selectedTopic = ref('all');
     const topicOptions = ref([]);
+
+    const { loading, startLoading, stopLoading } = useLoading();
+    const { error, apiError, setError, setApiError, clearErrors } = useError();
 
     const isInitialState = computed(() => !loading.value && !apiError.value && !error.value && searchResults.value.length === 0);
     const shouldShowNoDataError = computed(() => searchResults.value.length === 0 && error.value);
@@ -49,7 +52,6 @@ export default {
     const fetchTopicOptions = async () => {
       try {
         const responseData = await fetchTopics();
-        console.log(responseData);
         topicOptions.value = ['all', ...responseData];
       } catch (err) {
         apiError.value = err;
@@ -59,24 +61,26 @@ export default {
     const handleTopicSelected = (topic) => {
       selectedTopic.value = topic;
       searchResults.value = [];
-      loading.value = false;
-      error.value = null;
+      stopLoading();
+      clearErrors(); 
     };
 
     const handleSearch = (query) => {
-      error.value = null;
-      loading.value = true;
+      clearErrors(); 
+      startLoading(); 
 
       fetchData(query, selectedTopic.value)
         .then((results) => {
           searchResults.value = results;
-          error.value = results.length === 0 ? new Error('No matching data found') : null;
+          if (results.length === 0) {
+            setError('No matching data found');
+          }        
         })
         .catch((err) => {
-          apiError.value = err;
+          setApiError(err);
         })
         .finally(() => {
-          loading.value = false;
+          stopLoading(); 
         });
     };
 

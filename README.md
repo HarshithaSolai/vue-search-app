@@ -28,24 +28,24 @@ Additional Features that I implemented :
 - Filter option to filter the topics to be searched
 - Filter option 'All' to search in all the topics and displays the mix of search result topics
 - Handling various scenarios like enabling the search button only when user types more than 3 characters
-- Showing Transition State like loading, error and no data scenarios
+- Showing various status like loading, error and no data scenarios
 
 ### Non-Functional Requirements
 - Responsive & Mobile friendly 
 - Performance Optimization
 - Maintainability & Reusable code 
 - User-friendly Design 
-- User Engagement during API data fetch (Shimmer or Loading Indicator)
+- User Engagement during API data fetch (Loading Indicator)
 
 ## Environment Setup
 - **node version** : v18.12.1
 - **npm version** : 9.2.0
 ## Tech Stack
-- **UI Framework** : Vue (Because that is what I will be using in ABN AMRO and in technical point of view it's easy to develop, it's component-based architecture so we can create modular and reusable code, its virtual DOM minimizes unnecessary DOM manipulations)
+- **UI Framework** : Vue (Because that is what I will be using in ABN AMRO and in technical point of view it's easy to develop, component-based architecture so we can create modular and reusable code, its virtual DOM minimizes unnecessary DOM manipulations)
 - **Routing** : Vue Router
-- **CSS Framework** : Tailwind CSS (Tailwind automatically removes all unused CSS when building for production, responsive design with breakpoints, don't have to spend time on writing long css in css files, reusable classes)
+- **CSS Framework** : Tailwind CSS (Tailwind automatically removes all unused CSS when building for production, responsive design with breakpoints, reusable classes, don't have to spend time on writing long css in style)
 - **Data/State Management** :
-- **Testing Framework** : Jest
+- **Testing Framework** : Jest - Unit testing
 - **Bundling** : Vite
 - **Hosting** : Netlify (I thought it will be easy for reviewers to see live demo of the app without having to run scripts)
 
@@ -56,13 +56,12 @@ Based on the requirements, I am planning to use Client-Side Rendering Architectu
 
 ### Programming patterns
 - Clean code (Created components based on single responsibility principle)
+- Reusable components (BaseCard component is reused by all topics cards)
 - Dymanic component rendering (using dynamic binding :is directive)
 - Conditional rendering using (v-if, v-else-if, and v-else directives)
-- Loading and Error handling 
+- Loading and Error handling using composables
 - Custom Events and Emitting
-- Data and Reactive Properties
-- Lifecycle Hooks
-- I staretd with Options API method of creating components first and then made it reusable using Composition API (it was easy to migrate since it ws very similar to hooks in react)
+- I staretd with Options API method of creating components first and then made it reusable using Composition API and composables (it was easy to migrate since it was very similar to native hooks & custom hooks in react)
 
 ## Design
 ### UX
@@ -77,15 +76,16 @@ Based on the requirements, I am planning to use Client-Side Rendering Architectu
     Header 
     HomePage
       SearchComponent
-      TopicsFilterComponent
-      TransitionStateComponent
-      ShowCardComponent
-        PeopleCard
-        AddressCard
-        OrganizationCard
+      FilterComponent
+      StatusMessage
+      CardsList
+        BaseCard
+          PeopleCard
+          AddressCard
+          OrganizationCard
   ```
 ## API Endpoints 
-Used mockaroo to generate mock people, organizations and addresses (JSON format) data and stored in mock-data.json
+Used mockaroo to generate mock people, organizations and addresses (JSON format) data, stored in mock-data.json. Created a mock service to utilize ths json data to simulate API call.
 
 ## Live Demo
 Please check https://vue-search-app.netlify.app/ for live demo.
@@ -114,4 +114,10 @@ npm run build
 
 ```sh
 npm run lint
+```
+
+### 
+
+```sh
+npm run test
 ```

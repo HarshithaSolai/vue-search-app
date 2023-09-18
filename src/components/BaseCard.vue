@@ -9,7 +9,7 @@
       />
     </div>
     <div class="flex flex-col sm:items-start sm:justify-between">
-      <h3 class="font-bold text-xl text-abn-green hover:underline">
+      <h3 data-testid="title" class="font-bold text-xl text-abn-green hover:underline">
         <router-link :to="linkTo">{{ title }}</router-link>
       </h3>
       <slot></slot>
