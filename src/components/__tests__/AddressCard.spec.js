@@ -1,9 +1,9 @@
 import { mount } from '@vue/test-utils'
 import AddressCard from '../AddressCard.vue'
-import mockImage from '../../assets/images/map.png' // Update the path accordingly
+import mockImage from '../../assets/images/map.png'
 
 describe('AddressCard', () => {
-  it('renders the component with prop data and a loaded image', () => {
+  it('renders the component with prop data', () => {
     const sampleResult = {
       street: '123 Main St',
       house_number: '42',
@@ -18,9 +18,7 @@ describe('AddressCard', () => {
       }
     })
 
-    // Verify that the component exists
     expect(wrapper.exists()).toBe(true)
-
     expect(wrapper.find('[data-testid="street"]').text()).toContain('Street: 123 Main St')
     expect(wrapper.find('[data-testid="house_number"]').text()).toContain('House number: 42')
     expect(wrapper.find('[data-testid="city"]').text()).toContain('City: Example City')
@@ -37,7 +35,7 @@ describe('AddressCard', () => {
       house_number: '42',
       city: 'Example City',
       postal_code: '12345',
-      country: 'Example Country'
+      country: 'Exampl;e Country'
     }
 
     const wrapper = mount(AddressCard, {

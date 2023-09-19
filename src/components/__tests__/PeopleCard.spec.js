@@ -41,11 +41,8 @@ describe('PeopleCard', () => {
       }
     })
 
-    // Verify that the image element exists
     const imgElement = wrapper.find('img')
     expect(imgElement.exists()).toBe(true)
-
-    // Check if the src and alt attributes match the male profile image
     expect(imgElement.attributes('src')).toEqual(expect.stringContaining(maleImage))
     expect(imgElement.attributes('alt')).toBe('John')
   })
@@ -64,11 +61,8 @@ describe('PeopleCard', () => {
       }
     })
 
-    // Verify that the image element exists
     const imgElement = wrapper.find('img')
     expect(imgElement.exists()).toBe(true)
-
-    // Check if the src and alt attributes match the female profile image
     expect(imgElement.attributes('src')).toEqual(expect.stringContaining(femaleImage))
     expect(imgElement.attributes('alt')).toBe('Jane')
   })

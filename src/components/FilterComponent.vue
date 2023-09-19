@@ -20,7 +20,7 @@ export default {
   },
   methods: {
     updateSelectedOption(event) {
-      this.$emit('optionSelected', event.target.value)
+      this.$emit('optionSelected', event.target.value);
     }
   }
 }

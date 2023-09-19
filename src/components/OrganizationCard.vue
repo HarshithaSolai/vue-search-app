@@ -13,20 +13,20 @@
 </template>
 
 <script>
-import BaseCard from './BaseCard.vue';
-import organizationImage from '../assets/images/organization.png';
+import BaseCard from './BaseCard.vue'
+import organizationImage from '../assets/images/organization.png'
 
 export default {
   props: {
-    result: Object,
+    result: Object
   },
   components: {
-    BaseCard,
+    BaseCard
   },
   data() {
     return {
-      organizationImage: organizationImage,
-    };
-  },
-};
+      organizationImage: organizationImage
+    }
+  }
+}
 </script>

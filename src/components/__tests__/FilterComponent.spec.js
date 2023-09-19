@@ -16,7 +16,6 @@ describe('FilterComponent', () => {
     })
 
     expect(wrapper.exists()).toBe(true)
-
     expect(wrapper.find('h3').text()).toContain(label)
 
     const selectElement = wrapper.find('select')

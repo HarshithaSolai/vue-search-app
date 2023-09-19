@@ -30,7 +30,7 @@ export default {
   },
   methods: {
     search() {
-      this.$emit('search', this.searchQuery)
+      this.$emit('search', this.searchQuery);
     }
   }
 }

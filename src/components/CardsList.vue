@@ -33,11 +33,11 @@ export default {
       const componentName = componentMap[resultType];
 
       if (this.topic !== 'all' && componentMap[this.topic]) {
-        return componentMap[this.topic]
+        return componentMap[this.topic];
       }
 
-      // If componentName is not found or topic is "all," return the default
-      return componentName || PeopleCard
+      // If topic is "all" or componentName is not found return the default
+      return componentName || PeopleCard;
     }
   }
 }

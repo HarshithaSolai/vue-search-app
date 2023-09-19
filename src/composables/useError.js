@@ -1,21 +1,21 @@
-import { ref } from 'vue';
+import { ref } from 'vue'
 
 export function useError() {
-  const error = ref(null);
-  const apiError = ref(null);
+  const error = ref(null)
+  const apiError = ref(null)
 
   const setError = (message) => {
-    error.value = new Error(message);
-  };
+    error.value = new Error(message)
+  }
 
   const setApiError = (error) => {
-    apiError.value = error;
-  };
+    apiError.value = error
+  }
 
   const clearErrors = () => {
-    error.value = null;
-    apiError.value = null;
-  };
+    error.value = null
+    apiError.value = null
+  }
 
   return {
     error,
@@ -23,5 +23,5 @@ export function useError() {
     setError,
     setApiError,
     clearErrors
-  };
+  }
 }

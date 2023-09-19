@@ -26,67 +26,69 @@
 </template>
 
 <script>
-import { ref, onMounted, computed } from 'vue';
-import CardsList from '../components/CardsList.vue';
-import SearchComponent from '../components/SearchComponent.vue';
-import FilterComponent from '../components/FilterComponent.vue';
-import { fetchData, fetchTopics } from '../api/services/mockDataService';
-import StatusMessage from '../components/StatusMessage.vue';
+import { ref, onMounted, computed } from 'vue'
+import CardsList from '../components/CardsList.vue'
+import SearchComponent from '../components/SearchComponent.vue'
+import FilterComponent from '../components/FilterComponent.vue'
+import { fetchData, fetchTopics } from '../api/services/mockDataService'
+import StatusMessage from '../components/StatusMessage.vue'
 
-import { useLoading } from '../composables/useLoading';
-import { useError } from '../composables/useError'; 
+import { useLoading } from '../composables/useLoading'
+import { useError } from '../composables/useError'
 
 export default {
   name: 'HomePage',
   setup() {
-    const searchResults = ref([]);
-    const selectedTopic = ref('all');
-    const topicOptions = ref([]);
+    const searchResults = ref([])
+    const selectedTopic = ref('all')
+    const topicOptions = ref([])
 
-    const { loading, startLoading, stopLoading } = useLoading();
-    const { error, apiError, setError, setApiError, clearErrors } = useError();
+    const { loading, startLoading, stopLoading } = useLoading()
+    const { error, apiError, setError, setApiError, clearErrors } = useError()
 
-    const isInitialState = computed(() => !loading.value && !apiError.value && !error.value && searchResults.value.length === 0);
-    const shouldShowNoDataError = computed(() => searchResults.value.length === 0 && error.value);
-    
+    const isInitialState = computed(
+      () => !loading.value && !apiError.value && !error.value && searchResults.value.length === 0
+    )
+    const shouldShowNoDataError = computed(() => searchResults.value.length === 0 && error.value)
+
     const fetchTopicOptions = async () => {
       try {
-        const responseData = await fetchTopics();
-        topicOptions.value = ['all', ...responseData];
+        const responseData = await fetchTopics()
+        topicOptions.value = ['all', ...responseData]
       } catch (err) {
-        apiError.value = err;
+        apiError.value = err
       }
-    };
+    }
 
     const handleTopicSelected = (topic) => {
-      selectedTopic.value = topic;
-      searchResults.value = [];
-      stopLoading();
-      clearErrors(); 
-    };
+      selectedTopic.value = topic
+      searchResults.value = []
+      stopLoading()
+      clearErrors()
+    }
 
     const handleSearch = (query) => {
-      clearErrors(); 
-      startLoading(); 
+      clearErrors()
+      startLoading()
 
       fetchData(query, selectedTopic.value)
         .then((results) => {
-          searchResults.value = results;
+          searchResults.value = results
           if (results.length === 0) {
-            setError('No matching data found');
-          }        
+            setError('No matching data found')
+          }
         })
         .catch((err) => {
-          setApiError(err);
+          setApiError(err)
         })
         .finally(() => {
-          stopLoading(); 
-        });
-    };
+          stopLoading()
+        })
+    }
 
     onMounted(() => {
-      fetchTopicOptions();
-    });
+      fetchTopicOptions()
+    })
 
     return {
       loading,
@@ -98,8 +100,8 @@ export default {
       isInitialState,
       shouldShowNoDataError,
       handleTopicSelected,
-      handleSearch,
-    };
+      handleSearch
+    }
   },
 
   components: {
