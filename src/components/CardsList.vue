@@ -3,7 +3,7 @@
     <div
       v-for="(result, index) in results"
       :key="index"
-      class="flex flex-col w-2/3 rounded shadow-lg px-6 py-4"
+      class="flex flex-col w-full sm:w-2/3 rounded shadow-lg px-6 py-4"
     >
       <!-- Dynamically render the appropriate card component -->
       <component :is="getCardComponentName(result.type)" :result="result"></component>
