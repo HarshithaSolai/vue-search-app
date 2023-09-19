@@ -2,16 +2,16 @@ import mockData from '../data/mock-data.json'
 
 // Simulated delay to mimic an API call
 function delay(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms))
+  return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
 export async function fetchTopics() {
   try {
-    const topics = Object.keys(mockData)
-    await delay(1000)
-    return topics
+    const topics = Object.keys(mockData);
+    await delay(1000);
+    return topics;
   } catch (error) {
-    console.error('Error fetching topic options:', error)
+    console.error('Error fetching topic options:', error);
     throw error
   }
 }
@@ -21,8 +21,8 @@ export function fetchData(query, topic) {
   return new Promise((resolve, reject) => {
     delay(1000) // Simulate network latency
       .then(() => {
-        const results = []
-        const topicsToSearch = topic === 'all' ? ['people', 'organizations', 'addresses'] : [topic]
+        const results = [];
+        const topicsToSearch = topic === 'all' ? ['people', 'organizations', 'addresses'] : [topic];
 
         topicsToSearch.forEach((key) => {
           const filteredData = mockData[key].filter((item) => {
@@ -49,17 +49,17 @@ export function fetchData(query, topic) {
                 item.postal_code?.toLowerCase().includes(query.toLowerCase())
               )
             } else {
-              return false
+              return false;
             }
           })
 
-          results.push(...filteredData)
+          results.push(...filteredData);
         })
         resolve(results)
       })
       .catch((error) => {
-        console.error('Error fetching data:', error)
-        reject(error)
+        console.error('Error fetching data:', error);
+        reject(error);
       })
   })
 }
